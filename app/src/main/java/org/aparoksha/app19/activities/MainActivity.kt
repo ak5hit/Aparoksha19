@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportActionBar!!.title = "Home"
         loadFragment(HomeFragment())
         initiateBottomNavigation()
     }
@@ -24,31 +23,26 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     loadFragment(HomeFragment())
-                    supportActionBar!!.title = "Home"
                     true
                 }
                 R.id.navigation_events -> {
-                    supportActionBar!!.title = "Events"
                     true
                 }
                 R.id.navigation_updates -> {
-                    supportActionBar!!.title = "Updates"
                     true
                 }
                 R.id.navigation_info -> {
                     loadFragment(InfoFragment())
-                    supportActionBar!!.title = "Info"
                     true
                 }
                 else -> {
-                    supportActionBar!!.title = "Hey!! :D"
-                    true
+                    false
                 }
             }
         }
     }
 
-    fun loadFragment(fragment: Fragment) {
+    private fun loadFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_container, fragment)
         transaction.addToBackStack(null)

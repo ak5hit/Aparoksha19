@@ -1,14 +1,13 @@
 package org.aparoksha.app19.fragments
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import kotlinx.android.synthetic.main.fragment_info.*
 import org.aparoksha.app19.R
+import org.aparoksha.app19.adapters.InfoViewPagerAdapter
 
 class InfoFragment : Fragment() {
 
@@ -18,6 +17,13 @@ class InfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_info, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        info_view_pager.adapter = InfoViewPagerAdapter(activity!!.supportFragmentManager)
+        info_tabs.setupWithViewPager(info_view_pager)
     }
 
 }
