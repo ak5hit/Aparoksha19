@@ -6,4 +6,6 @@ data class Person(
     val imageUrl: String,
     val designation: String,
     val phoneNumber: Long
-)
+) {
+    constructor() : this("", "", "", "", 0)
+}

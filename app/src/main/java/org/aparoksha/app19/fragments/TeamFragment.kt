@@ -3,6 +3,7 @@ package org.aparoksha.app19.fragments
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +19,8 @@ private const val ORGANISERS_COLLECTION = "organisers"
 
 class TeamFragment : Fragment() {
 
-    private lateinit var teamArrayList: ArrayList<Person>
     private lateinit var db: FirebaseFirestore
+    private lateinit var teamArrayList: ArrayList<Person>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +42,12 @@ class TeamFragment : Fragment() {
         team_list.layoutManager = LinearLayoutManager(context)
         team_list.adapter = TeamAdapter(context!!, teamArrayList)
 
+        setupSwipeRefreshLayout()
+    }
+
+    private fun loadRecyclerViewData() {
+        team_swipe_refresh.isRefreshing = true
+
         fetchTeamData()
     }
 
@@ -48,13 +55,28 @@ class TeamFragment : Fragment() {
         db.collection(ORGANISERS_COLLECTION)
             .get()
             .addOnSuccessListener {
+                teamArrayList.clear()
                 for (doc in it.documents) {
                     val person = doc.toObject(Person::class.java)
                     if (person != null) teamArrayList.add(person)
                 }
+                team_list.adapter!!.notifyDataSetChanged()
             }
             .addOnFailureListener {
                 context!!.toast("Connection Broke!!")
             }
+            .addOnCompleteListener {
+                team_swipe_refresh.isRefreshing = false
+            }
+    }
+
+    private fun setupSwipeRefreshLayout() {
+        team_swipe_refresh.setOnRefreshListener {
+            fetchTeamData()
+        }
+
+        team_swipe_refresh.post {
+            loadRecyclerViewData()
+        }
     }
 }
