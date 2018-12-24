@@ -8,6 +8,7 @@ import org.aparoksha.app19.R
 import org.aparoksha.app19.equalsFragment
 import org.aparoksha.app19.fragments.HomeFragment
 import org.aparoksha.app19.fragments.InfoFragment
+import org.aparoksha.app19.fragments.UpdatesFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_updates -> {
+                    loadFragment(UpdatesFragment())
                     true
                 }
                 R.id.navigation_info -> {
