@@ -5,18 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import kotlinx.android.synthetic.main.notification_container.view.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.models.Notification
-import kotlin.collections.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 
+/**
+ * Created by sashank on 4/3/18.
+ */
 
-class NotificationAdapter(private val noNotifsTV : TextView)
-    : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
-
-
-    private val notificationList = ArrayList<Notification>()
-    override fun getItemCount(): Int = notificationList.size
+class NotificationAdapter(options: FirebaseRecyclerOptions<Notification>,
+                          private val noNotifsTV : TextView)
+    : FirebaseRecyclerAdapter<Notification, NotificationAdapter.NotificationViewHolder>(options) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
         return NotificationViewHolder(
@@ -24,31 +27,25 @@ class NotificationAdapter(private val noNotifsTV : TextView)
                         .inflate(R.layout.notification_container, parent, false))
     }
 
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        holder.bindView(notificationList.get(position))
+    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int, model: Notification) {
+        holder.bindView(model)
     }
 
     class NotificationViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
 
         fun bindView(notification: Notification) {
+
             itemView.titleTV.text = notification.title
             itemView.descriptionTV.text = notification.description
         }
     }
 
-    fun swapList(list: ArrayList<Notification>){
-        notificationList.clear()
-        notificationList.addAll(list)
-        noNotifsTV.visibility = when(list.size){
-            0-> View.VISIBLE
-            else -> View.GONE
-        }
-        notifyDataSetChanged()
+    override fun getItem(position: Int): Notification {
+        return super.getItem(itemCount - 1 - position)
     }
 
-    fun add(notification: Notification) {
-        notificationList.add(0, notification)
-        noNotifsTV.visibility = View.GONE
-        notifyItemInserted(0)
+    override fun onDataChanged() {
+        super.onDataChanged()
+        noNotifsTV.visibility = if (itemCount == 0) View.VISIBLE else View.GONE
     }
 }
