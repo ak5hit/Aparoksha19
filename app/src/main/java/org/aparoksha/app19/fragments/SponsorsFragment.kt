@@ -3,7 +3,6 @@ package org.aparoksha.app19.fragments
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,6 @@ import org.aparoksha.app19.R
 import org.aparoksha.app19.adapters.SponsorsAdapter
 import org.aparoksha.app19.models.Sponsor
 import org.jetbrains.anko.toast
-
-private const val SPONSORS_COLLECTION = "sponsors"
 
 class SponsorsFragment : Fragment() {
 
@@ -78,5 +75,9 @@ class SponsorsFragment : Fragment() {
         sponsors_swipe_refresh.post {
             loadRecyclerViewData()
         }
+    }
+
+    companion object {
+        const val SPONSORS_COLLECTION = "sponsors"
     }
 }

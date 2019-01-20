@@ -7,8 +7,6 @@ import org.aparoksha.app19.fragments.DevelopersFragment
 import org.aparoksha.app19.fragments.SponsorsFragment
 import org.aparoksha.app19.fragments.TeamFragment
 
-const val NUMBER_OF_TABS = 3
-
 class InfoViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
@@ -31,5 +29,9 @@ class InfoViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) 
             2 -> "Developers"
             else -> null
         }
+    }
+
+    companion object {
+        const val NUMBER_OF_TABS = 3
     }
 }

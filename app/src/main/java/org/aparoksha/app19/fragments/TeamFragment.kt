@@ -3,7 +3,6 @@ package org.aparoksha.app19.fragments
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,6 @@ import org.aparoksha.app19.R
 import org.aparoksha.app19.adapters.TeamAdapter
 import org.aparoksha.app19.models.Person
 import org.jetbrains.anko.toast
-
-private const val ORGANISERS_COLLECTION = "organisers"
 
 class TeamFragment : Fragment() {
 
@@ -78,5 +75,9 @@ class TeamFragment : Fragment() {
         team_swipe_refresh.post {
             loadRecyclerViewData()
         }
+    }
+
+    companion object {
+        const val ORGANISERS_COLLECTION = "organisers"
     }
 }
