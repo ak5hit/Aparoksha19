@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.equalsFragment
+import org.aparoksha.app19.fragments.EventsFragment
 import org.aparoksha.app19.fragments.HomeFragment
 import org.aparoksha.app19.fragments.InfoFragment
 import org.aparoksha.app19.fragments.UpdatesFragment
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_events -> {
+                    loadFragment(EventsFragment())
                     true
                 }
                 R.id.navigation_updates -> {
