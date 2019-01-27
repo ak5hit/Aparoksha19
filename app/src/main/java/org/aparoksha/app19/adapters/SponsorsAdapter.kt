@@ -29,6 +29,11 @@ class SponsorsAdapter(val context: Context, private var sponsorsList: ArrayList<
         return sponsorsList.size
     }
 
+    public fun updateSponsorsList(list: ArrayList<Sponsor>) {
+        sponsorsList = list
+        notifyDataSetChanged()
+    }
+
     inner class SponsorsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val logoIV = itemView.findViewById<ImageView>(R.id.sponsor_logo)

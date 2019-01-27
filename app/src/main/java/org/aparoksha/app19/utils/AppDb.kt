@@ -8,9 +8,10 @@ import org.aparoksha.app19.models.Sponsor
 
 class AppDB private constructor(context: Context) {
     private val waspDB: WaspDb = WaspFactory.openOrCreateDatabase(
-            context.filesDir.path,
-            "eventDB",
-            "aparoksha18")
+        context.filesDir.path,
+        "eventDB",
+        "aparoksha18"
+    )
 
     private val eventHash = waspDB.openOrCreateHash("events")
     private val bookmarksHash = waspDB.openOrCreateHash("bookmarks")
@@ -51,9 +52,9 @@ class AppDB private constructor(context: Context) {
 
     fun getAllSponsors(): MutableList<Sponsor> = sponsorHash.getAllValues<Sponsor>()
 
-//    fun storeSponsors(sponsors: List<Sponsor>) = sponsors.forEach { sponsorHash.put(it.id, it) }
+    fun storeSponsors(sponsors: List<Sponsor>) = sponsors.forEach { sponsorHash.put(it.id, it) }
 
-    fun storeTeam(teamList: List<Person>) = teamList.forEach({ teamHash.put(it.id, it) })
+    fun storeTeam(teamList: List<Person>) = teamList.forEach { teamHash.put(it.id, it) }
 
 //    fun storeDevelopers(developers: List<Developer>) = developers.forEach({developerHash.put(it.id,it)})
 

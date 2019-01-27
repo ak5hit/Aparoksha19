@@ -9,13 +9,18 @@ import android.view.ViewGroup
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.fragment_sponsors.*
+import kotlinx.android.synthetic.main.fragment_team.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.adapters.SponsorsAdapter
 import org.aparoksha.app19.models.Sponsor
+import org.aparoksha.app19.utils.AppDB
 import org.jetbrains.anko.toast
 
 class SponsorsFragment : Fragment() {
 
+    private lateinit var mSponsorsAdapter: SponsorsAdapter
+
+    private lateinit var appDB: AppDB
     private lateinit var db: FirebaseFirestore
     private lateinit var sponsorsArrayList: ArrayList<Sponsor>
 
@@ -25,6 +30,7 @@ class SponsorsFragment : Fragment() {
     ): View? {
 
         sponsorsArrayList = ArrayList()
+        appDB = AppDB.getInstance(context!!)
         db = FirebaseFirestore.getInstance()
         db.firestoreSettings = FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(true).build()
@@ -37,15 +43,18 @@ class SponsorsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sponsors_list.layoutManager = LinearLayoutManager(context)
-        sponsors_list.adapter = SponsorsAdapter(context!!, sponsorsArrayList)
+        mSponsorsAdapter = SponsorsAdapter(context!!, sponsorsArrayList)
+        sponsors_list.adapter = mSponsorsAdapter
 
         setupSwipeRefreshLayout()
-    }
-
-    private fun loadRecyclerViewData() {
-        sponsors_swipe_refresh.isRefreshing = true
-
-        fetchSponsorsData()
+        if (appDB.getAllSponsors().isEmpty()) {
+            team_swipe_refresh.isRefreshing = true
+            fetchSponsorsData()
+        } else {
+            sponsorsArrayList = ArrayList(appDB.getAllSponsors())
+            mSponsorsAdapter.updateSponsorsList(sponsorsArrayList)
+            sponsors_swipe_refresh.isRefreshing = false
+        }
     }
 
     private fun fetchSponsorsData() {
@@ -70,10 +79,6 @@ class SponsorsFragment : Fragment() {
     private fun setupSwipeRefreshLayout() {
         sponsors_swipe_refresh.setOnRefreshListener {
             fetchSponsorsData()
-        }
-
-        sponsors_swipe_refresh.post {
-            loadRecyclerViewData()
         }
     }
 
