@@ -3,8 +3,10 @@ package org.aparoksha.app19.utils
 import android.content.Context
 import net.rehacktive.waspdb.WaspDb
 import net.rehacktive.waspdb.WaspFactory
+import org.aparoksha.app19.models.Competition
 import org.aparoksha.app19.models.Person
 import org.aparoksha.app19.models.Sponsor
+import org.aparoksha.app19.models.Workshop
 
 class AppDB private constructor(context: Context) {
     private val waspDB: WaspDb = WaspFactory.openOrCreateDatabase(
@@ -19,6 +21,8 @@ class AppDB private constructor(context: Context) {
     private val developerHash = waspDB.openOrCreateHash("developer")
     private val sponsorHash = waspDB.openOrCreateHash("sponsors")
     private val flagshipHash = waspDB.openOrCreateHash("flagships")
+    private val competitionHash = waspDB.openOrCreateHash("apkMonthCompetitions")
+    private val workshopHash = waspDB.openOrCreateHash("apkMonthWorkshops")
 
     companion object : SingletonHolder<AppDB, Context>(::AppDB)
 
@@ -55,6 +59,14 @@ class AppDB private constructor(context: Context) {
     fun storeSponsors(sponsors: List<Sponsor>) = sponsors.forEach { sponsorHash.put(it.id, it) }
 
     fun storeTeam(teamList: List<Person>) = teamList.forEach { teamHash.put(it.id, it) }
+
+    fun storeCompetitions(competitionList: List<Competition>) = competitionList.forEach { competitionHash.put(it.id, it) }
+
+    fun getAllCompetitions(): List<Competition> = competitionHash.getAllValues<Competition>().sortedBy { it.dateTime }
+
+    fun storeWorkshops(workshopList: List<Workshop>) = workshopList.forEach { workshopHash.put(it.id, it) }
+
+    fun getAllWorkshops(): List<Workshop> = workshopHash.getAllValues<Workshop>().sortedBy { it.title }
 
 //    fun storeDevelopers(developers: List<Developer>) = developers.forEach({developerHash.put(it.id,it)})
 

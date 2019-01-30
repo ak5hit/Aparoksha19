@@ -29,10 +29,11 @@ class TeamFragment : Fragment() {
     ): View? {
 
         teamArrayList = ArrayList()
+        mTeamAdapter = TeamAdapter(context!!, teamArrayList)
         appDb = AppDB.getInstance(context!!)
         db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = FirebaseFirestoreSettings.Builder()
-            .setPersistenceEnabled(true).build()
+//        db.firestoreSettings = FirebaseFirestoreSettings.Builder()
+//            .setPersistenceEnabled(true).build()
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_team, container, false)
@@ -42,7 +43,6 @@ class TeamFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         team_list.layoutManager = LinearLayoutManager(context)
-        mTeamAdapter = TeamAdapter(context!!, teamArrayList)
         team_list.adapter = mTeamAdapter
 
         setupSwipeRefreshLayout()

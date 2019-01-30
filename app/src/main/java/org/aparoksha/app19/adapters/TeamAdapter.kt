@@ -38,7 +38,7 @@ class TeamAdapter(val context: Context, var teamList: ArrayList<Person>) :
         return teamList.size
     }
 
-    public fun updateTeamList(list: ArrayList<Person>) {
+    fun updateTeamList(list: ArrayList<Person>) {
         teamList = list
         notifyDataSetChanged()
     }

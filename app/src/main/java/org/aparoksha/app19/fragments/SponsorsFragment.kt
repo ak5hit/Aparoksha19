@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.fragment_sponsors.*
-import kotlinx.android.synthetic.main.fragment_team.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.adapters.SponsorsAdapter
 import org.aparoksha.app19.models.Sponsor
@@ -48,7 +47,7 @@ class SponsorsFragment : Fragment() {
 
         setupSwipeRefreshLayout()
         if (appDB.getAllSponsors().isEmpty()) {
-            team_swipe_refresh.isRefreshing = true
+            sponsors_swipe_refresh.isRefreshing = true
             fetchSponsorsData()
         } else {
             sponsorsArrayList = ArrayList(appDB.getAllSponsors())
@@ -66,7 +65,8 @@ class SponsorsFragment : Fragment() {
                     val sponsor = doc.toObject(Sponsor::class.java)
                     if (sponsor != null) sponsorsArrayList.add(sponsor)
                 }
-                sponsors_list.adapter!!.notifyDataSetChanged()
+                appDB.storeSponsors(sponsorsArrayList)
+                mSponsorsAdapter.updateSponsorsList(sponsorsArrayList)
             }
             .addOnFailureListener {
                 context!!.toast("Connection Broke!!")

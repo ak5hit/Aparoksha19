@@ -6,10 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.equalsFragment
-import org.aparoksha.app19.fragments.EventsFragment
-import org.aparoksha.app19.fragments.HomeFragment
-import org.aparoksha.app19.fragments.InfoFragment
-import org.aparoksha.app19.fragments.UpdatesFragment
+import org.aparoksha.app19.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,24 +26,21 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     loadFragment(HomeFragment())
-                    true
                 }
                 R.id.navigation_events -> {
                     loadFragment(EventsFragment())
-                    true
+                }
+                R.id.navigation_apk_month -> {
+                    loadFragment(ApkMonthFragment())
                 }
                 R.id.navigation_updates -> {
                     loadFragment(UpdatesFragment())
-                    true
                 }
                 R.id.navigation_info -> {
                     loadFragment(InfoFragment())
-                    true
-                }
-                else -> {
-                    false
                 }
             }
+            true
         }
     }
 
