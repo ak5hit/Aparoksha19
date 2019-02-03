@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.aparoksha.app19.activities.LoginActivity">
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/GloginB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foregroundGravity="center">
+    </com.google.android.gms.common.SignInButton>
+
+    <ProgressBar
+        android:id="@+id/progBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
