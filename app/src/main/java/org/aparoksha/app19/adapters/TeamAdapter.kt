@@ -38,6 +38,11 @@ class TeamAdapter(val context: Context, var teamList: ArrayList<Person>) :
         return teamList.size
     }
 
+    fun updateTeamList(list: ArrayList<Person>) {
+        teamList = list
+        notifyDataSetChanged()
+    }
+
     inner class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val nameTV = itemView.findViewById<TextView>(R.id.organiser_name)
