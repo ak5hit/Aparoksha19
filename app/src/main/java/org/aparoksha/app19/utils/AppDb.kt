@@ -3,6 +3,7 @@ package org.aparoksha.app19.utils
 import android.content.Context
 import net.rehacktive.waspdb.WaspDb
 import net.rehacktive.waspdb.WaspFactory
+import org.aparoksha.app19.models.Event
 import org.aparoksha.app19.models.Competition
 import org.aparoksha.app19.models.Person
 import org.aparoksha.app19.models.Sponsor
@@ -26,7 +27,7 @@ class AppDB private constructor(context: Context) {
 
     companion object : SingletonHolder<AppDB, Context>(::AppDB)
 
-//    fun getAllEvents(): List<Event> = eventHash.getAllValues<Event>()
+    fun getAllEvents(): List<Event> = eventHash.getAllValues<Event>()
 
 //    fun getAllFlagships(): List<FlagshipEvents> = eventHash.getAllValues<FlagshipEvents>()
 
@@ -67,6 +68,9 @@ class AppDB private constructor(context: Context) {
     fun storeWorkshops(workshopList: List<Workshop>) = workshopList.forEach { workshopHash.put(it.id, it) }
 
     fun getAllWorkshops(): List<Workshop> = workshopHash.getAllValues<Workshop>().sortedBy { it.title }
+
+    fun storeEvents(eventsList : List<Event>) = eventsList.forEach { eventHash.put(it.id, it)}
+
 
 //    fun storeDevelopers(developers: List<Developer>) = developers.forEach({developerHash.put(it.id,it)})
 
