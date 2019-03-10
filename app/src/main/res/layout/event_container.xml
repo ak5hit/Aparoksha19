@@ -24,6 +24,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:foreground="@drawable/gradient_event"
         />
 
 
@@ -40,6 +41,7 @@
             android:layout_marginBottom="32dp"
             android:layout_marginStart="5dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

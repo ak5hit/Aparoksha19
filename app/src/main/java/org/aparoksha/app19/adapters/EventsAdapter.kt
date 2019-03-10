@@ -1,12 +1,19 @@
 package org.aparoksha.app19.adapters
 
+import android.app.Activity
+import android.app.ActivityOptions
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.event_container.view.*
 import org.aparoksha.app19.R
+import org.aparoksha.app19.activities.EventsDetailActivity
 import org.aparoksha.app19.models.Event
+import org.jetbrains.anko.startActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -39,6 +46,15 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
                     val sdf = SimpleDateFormat("MMM d, hh:mm a")
                     sdf.timeZone = TimeZone.getTimeZone("Asia/India")
                     eventTimeTV.text = sdf.format(calendar.time)
+                }
+
+                Glide.with(this).load(event.imageUrl).into(eventImage)
+
+                setOnClickListener {
+                    val intent = Intent(context, EventsDetailActivity::class.java)
+                    val optionsCompat = ActivityOptions.makeSceneTransitionAnimation(context as Activity)
+                    intent.putExtra("id", event.id)
+                    startActivity(context, intent, optionsCompat.toBundle())
                 }
             }
         }

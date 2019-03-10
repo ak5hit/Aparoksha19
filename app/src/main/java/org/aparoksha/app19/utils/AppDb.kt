@@ -43,13 +43,13 @@ class AppDB private constructor(context: Context) {
 
 //    fun getBookmarkedEvents(): MutableList<Event> = bookmarksHash.getAllValues<Event>()
 
-//    fun addBookmark(id: Long): Boolean = bookmarksHash.put(id, getEventByID(id))
+    fun addBookmark(id: Long): Boolean = bookmarksHash.put(id, getEventByID(id))
 
     fun removeBookmark(id: Long): Boolean = bookmarksHash.remove(id)
 
-//    fun isBookmarked(id: Long) = (bookmarksHash.get<Event>(id) != null)
+    fun isBookmarked(id: Long) = (bookmarksHash.get<Event>(id) != null)
 
-//    fun getEventByID(id: Long): Event = eventHash.get<Event>(id)
+    fun getEventByID(id: Long): Event = eventHash.get<Event>(id)
 
 //    fun storeEvents(events: List<Event>) = events.forEach { eventHash.put(it.id, it) }
 
