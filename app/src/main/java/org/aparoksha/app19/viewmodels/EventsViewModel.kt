@@ -3,6 +3,10 @@ package org.aparoksha.app19.viewmodels
 import android.app.Application
 import android.arch.lifecycle.*
 import android.util.Log
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -14,39 +18,31 @@ class EventsViewModel(application : Application) : AndroidViewModel(application)
 
     val allEvents = MutableLiveData<ArrayList<Event>>()
 
-    init {
-        getData(true)
-    }
-
-    private fun showData() {
-        allEvents.value?.let {
-            for(element in it)
-                Log.d(TAG, element.name)
-        }
-    }
-
-    private fun getData(isFetchNeeded : Boolean) {
+    fun getData(isFetchNeeded : Boolean) {
         val dataBase = AppDB.getInstance(getApplication())
         val data = ArrayList(dataBase.getAllEvents())
         allEvents.postValue(data)
         if(isFetchNeeded) {
             GlobalScope.launch {
-                FirebaseFirestore.getInstance().collection("events").get().addOnSuccessListener {
-                    val list = ArrayList<Event>()
-                    it?.let {
-                        for (doc in it) {
-                            val data = doc.toObject(Event::class.java)
-                            list.add(data)
-                            Log.d(TAG, doc.id + " => " + doc.data)
+                val ref = FirebaseDatabase.getInstance().reference.child("events")
+                ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        //some error
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        Log.d(TAG, snapshot.children.toList().size.toString())
+                        val list = ArrayList<Event>()
+                        for (snap in snapshot.children) {
+                            Log.d(TAG, snap.toString())
+                            val currVal = snap.getValue(Event::class.java)
+                            list.add(currVal!!)
+                            Log.d(TAG, "${currVal.id} => ${currVal.name}" )
                         }
-                        allEvents.postValue(list)
                         dataBase.storeEvents(list)
-                        showData()
+                        allEvents.postValue(list)
                     }
-                }
-                    .addOnFailureListener { exception ->
-                        Log.d(TAG, "Error getting documents: ", exception)
-                    }
+                })
             }
         }
 

@@ -47,7 +47,7 @@ class AppDB private constructor(context: Context) {
 
     fun removeBookmark(id: Long): Boolean = bookmarksHash.remove(id)
 
-//    fun isBookmarked(id: Long) = (bookmarksHash.get<Event>(id) != null)
+    fun isBookmarked(id: Long) = (bookmarksHash.get<Event>(id) != null)
 
     fun getEventByID(id: Long): Event = eventHash.get<Event>(id)
 
