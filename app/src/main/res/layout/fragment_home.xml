@@ -1,49 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
-
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:tools="http://schemas.android.com/tools"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:overScrollMode="never"
+                                            tools:context=".fragments.HomeFragment">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/userIm"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_margin="10dp"/>
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@id/userIm"
-                android:layout_toRightOf="@id/userIm"
-                android:layout_alignTop="@id/userid"
-                android:text="one"
-                android:layout_weight="1"
-                android:layout_marginBottom="5dp"/>
-            <TextView
-                android:id="@+id/userid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/username"
-                android:layout_toEndOf="@id/userIm"
-                android:text="two"
-                android:layout_weight="1"/>
+            android:orientation="vertical">
+
+        <LinearLayout android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:weightSum="1">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:id="@+id/userIm"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:src="@drawable/ic_launcher_foreground"
+                        android:layout_margin="10dp"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+                    <TextView
+                            android:id="@+id/username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignRight="@id/userIm"
+                            android:layout_toRightOf="@id/userIm"
+                            android:layout_alignTop="@id/userid"
+                            android:text="one"
+                            android:layout_weight="1"
+                            android:layout_marginBottom="5dp" android:fontFamily="@font/acme"/>
+                    <TextView
+                            android:id="@+id/userid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@id/username"
+                            android:layout_toEndOf="@id/userIm"
+                            android:text="two"
+                            android:layout_weight="1"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="3"
+
+                android:background="@color/gray_shade_1"
+                android:padding="8dp"
+                tools:context=".fragments.HomeFragment">
+
+            <TextView
+                    android:id="@+id/bookmarks_TV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/autour_one"
+                    android:padding="8dp"
+                    android:text="Bookmarks"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/bookmarksRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutAnimation="@anim/layout_animation_slide_from_right"
+                    android:overScrollMode="never">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                    android:id="@+id/upcoming_TV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/autour_one"
+                    android:padding="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Upcoming"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/upcomingRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutAnimation="@anim/layout_animation_slide_from_bottom"
+                    android:overScrollMode="never">
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

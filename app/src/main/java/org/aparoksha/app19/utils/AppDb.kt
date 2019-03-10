@@ -41,7 +41,7 @@ class AppDB private constructor(context: Context) {
             .sortedBy { it.timestamp }
 */
 
-//    fun getBookmarkedEvents(): MutableList<Event> = bookmarksHash.getAllValues<Event>()
+    fun getBookmarkedEvents(): MutableList<Event> = bookmarksHash.getAllValues<Event>()
 
     fun addBookmark(id: Long): Boolean = bookmarksHash.put(id, getEventByID(id))
 
