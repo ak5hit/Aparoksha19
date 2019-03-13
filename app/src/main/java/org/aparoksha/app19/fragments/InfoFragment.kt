@@ -21,9 +21,9 @@ class InfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.title = getString(R.string.info_fragment_title)
 
         info_view_pager.adapter = InfoViewPagerAdapter(activity!!.supportFragmentManager)
         info_tabs.setupWithViewPager(info_view_pager)
     }
-
 }

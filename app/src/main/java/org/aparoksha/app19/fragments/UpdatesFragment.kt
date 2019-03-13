@@ -28,6 +28,7 @@ class UpdatesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.title = getString(R.string.updates_fragment_title)
 
         val ref = FirebaseDatabase.getInstance().getReference("notifications")
         val query: Query = ref

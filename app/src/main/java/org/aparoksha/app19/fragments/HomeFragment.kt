@@ -32,9 +32,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        activity!!.title = "My Aparoksha"
+        activity?.title = getString(R.string.home_fragment_title)
 
         val layoutManager = LinearLayoutManager(context)
         layoutManager.isAutoMeasureEnabled = true
