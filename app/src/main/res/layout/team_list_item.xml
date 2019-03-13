@@ -26,9 +26,9 @@
         <TextView
                 android:id="@+id/organiser_name"
                 android:textStyle="bold"
-                android:textColor="@android:color/black"
                 android:paddingBottom="4dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Name"/>
@@ -36,7 +36,7 @@
         <TextView
                 android:id="@+id/organiser_designation"
                 android:textColor="@android:color/black"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Designation"/>

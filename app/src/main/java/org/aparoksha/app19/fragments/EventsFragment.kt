@@ -41,7 +41,7 @@ class EventsFragment : Fragment() {
         categoryRecyclerView.adapter = adapter
 
         val allEvents = ViewModelProviders.of(this.activity!!).get(EventsViewModel::class.java)
-        allEvents.getData(false)
+        allEvents.getData(true)
         allEvents.allEvents.observe(this, Observer {
             it?.let {
                 val list = ArrayList<Event>()

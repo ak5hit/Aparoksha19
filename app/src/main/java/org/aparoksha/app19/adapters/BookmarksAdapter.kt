@@ -1,23 +1,16 @@
 package org.aparoksha.app19.adapters
 
-import android.app.Activity
-import android.app.ActivityOptions
 import android.content.Context
-import android.content.Intent
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.bookmark_event_layout.view.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.models.Event
 import org.aparoksha.app19.utils.AppDB
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
 

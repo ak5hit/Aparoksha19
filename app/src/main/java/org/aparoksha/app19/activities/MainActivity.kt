@@ -30,9 +30,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_events -> {
                     loadFragment(EventsFragment())
                 }
-                R.id.navigation_apk_month -> {
-                    loadFragment(ApkMonthFragment())
-                }
                 R.id.navigation_updates -> {
                     loadFragment(UpdatesFragment())
                 }

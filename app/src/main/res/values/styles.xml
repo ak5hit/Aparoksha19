@@ -19,7 +19,7 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>
 
-    <style name="EventsDetialTheme" parent="EventsTheme">
+    <style name="EventsDetailTheme" parent="EventsTheme">
         <item name="android:windowEnterTransition">@transition/event_detail_transition_out</item>
         <item name="android:windowExitTransition">@transition/event_detail_transition_out</item>
     </style>

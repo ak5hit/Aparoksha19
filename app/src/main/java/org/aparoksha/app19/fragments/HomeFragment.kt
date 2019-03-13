@@ -7,18 +7,15 @@ import android.support.v7.widget.LinearSnapHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.aparoksha.app19.R
-import org.aparoksha.app19.utils.AppDB
 import org.aparoksha.app19.adapters.BookmarksAdapter
 import org.aparoksha.app19.adapters.UpcomingAdapter
+import org.aparoksha.app19.utils.AppDB
 
 
 class HomeFragment : Fragment() {
     private lateinit var appDB: AppDB
-    lateinit var auth:FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,16 +83,6 @@ class HomeFragment : Fragment() {
             bookmarksRecyclerView.visibility = View.VISIBLE
             appDB.getBookmarkedEvents().let { bookmarksAdapter.addEvents(it.sortedBy { it.timestamp }) }
         }
-
-        auth=FirebaseAuth.getInstance();
-        Picasso.with(activity!!.applicationContext)
-            .load(auth.currentUser!!.photoUrl)
-            .resize(50, 50)
-            .centerCrop()
-            .into(userIm)
-        username.text = auth.currentUser!!.displayName
-        userid.text = auth.currentUser!!.email
-
     }
 
 }
