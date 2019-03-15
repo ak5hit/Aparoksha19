@@ -13,6 +13,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.Query
 import kotlinx.android.synthetic.main.fragment_updates.*
 import org.aparoksha.app19.R
+import org.aparoksha.app19.activities.MainActivity
 import org.aparoksha.app19.adapters.NotificationAdapter
 import org.aparoksha.app19.models.Notification
 
@@ -38,8 +39,19 @@ class UpdatesFragment : Fragment() {
 
         adapter = NotificationAdapter(options, noNotifsTV)
 
+
         recyclerview.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recyclerview.adapter = adapter
+
+        val toolBar = (activity as MainActivity).toolBar
+        recyclerview.setOnScrollChangeListener { _, _, _, _, _ ->
+            val value = recyclerview.canScrollVertically(-1)
+            if(!value) {
+                toolBar.elevation = 0f
+            } else{
+                toolBar.elevation = 16f
+            }
+        }
     }
 
     override fun onStart() {

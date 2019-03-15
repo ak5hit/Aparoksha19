@@ -1,8 +1,12 @@
 package org.aparoksha.app19.activities
 
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
+import android.support.design.widget.StateListAnimator
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.equalsFragment
@@ -11,14 +15,15 @@ import org.aparoksha.app19.fragments.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var currentFragment: Fragment
-
+    lateinit var toolBar : AppBarLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        toolBar = app_bar
         currentFragment = HomeFragment()
         loadFragment(HomeFragment())
         initiateBottomNavigation()
+
     }
 
     private fun initiateBottomNavigation() {
@@ -48,5 +53,10 @@ class MainActivity : AppCompatActivity() {
             currentFragment = fragment
             transaction.commit()
         }
+    }
+
+    override fun setTitle(title: CharSequence?) {
+        super.setTitle(title)
+        toolbar.title = title
     }
 }

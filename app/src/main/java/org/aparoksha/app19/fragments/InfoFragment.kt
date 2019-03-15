@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_info.*
 import org.aparoksha.app19.R
+import org.aparoksha.app19.activities.MainActivity
 import org.aparoksha.app19.adapters.InfoViewPagerAdapter
 
 class InfoFragment : Fragment() {
@@ -22,7 +23,7 @@ class InfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.title = getString(R.string.info_fragment_title)
-
+        (activity as MainActivity).toolBar.elevation = 0f
         info_view_pager.adapter = InfoViewPagerAdapter(activity!!.supportFragmentManager)
         info_tabs.setupWithViewPager(info_view_pager)
     }

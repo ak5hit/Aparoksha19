@@ -22,7 +22,10 @@ class EventsViewModel(application : Application) : AndroidViewModel(application)
         val dataBase = AppDB.getInstance(getApplication())
         val data = ArrayList(dataBase.getAllEvents())
         allEvents.postValue(data)
-        if(isFetchNeeded) {
+        var isFetchingRequired = isFetchNeeded
+        if(data.size == 0)
+            isFetchingRequired = true
+        if(isFetchingRequired) {
             GlobalScope.launch {
                 val ref = FirebaseDatabase.getInstance().reference.child("events")
                 ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -40,7 +43,6 @@ class EventsViewModel(application : Application) : AndroidViewModel(application)
                             Log.d(TAG, "${currVal.id} => ${currVal.name}" )
                         }
                         dataBase.storeEvents(list)
-                        allEvents.postValue(list)
                     }
                 })
             }

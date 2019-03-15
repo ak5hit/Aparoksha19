@@ -2,6 +2,7 @@ package org.aparoksha.app19.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.aparoksha.app19.R
+import org.aparoksha.app19.activities.MainActivity
 import org.aparoksha.app19.adapters.BookmarksAdapter
 import org.aparoksha.app19.adapters.UpcomingAdapter
 import org.aparoksha.app19.utils.AppDB
@@ -81,6 +83,9 @@ class HomeFragment : Fragment() {
             bookmarksRecyclerView.visibility = View.VISIBLE
             appDB.getBookmarkedEvents().let { bookmarksAdapter.addEvents(it.sortedBy { it.timestamp }) }
         }
+
+        val toolBar = (activity as MainActivity).toolBar
+        toolBar.elevation = 0f
     }
 
 }
