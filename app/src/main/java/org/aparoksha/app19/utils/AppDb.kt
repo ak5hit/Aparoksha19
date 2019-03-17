@@ -57,7 +57,7 @@ class AppDB private constructor(context: Context) {
 
     fun getAllSponsors(): MutableList<Sponsor> = sponsorHash.getAllValues<Sponsor>()
 
-    fun storeSponsors(sponsors: List<Sponsor>) = sponsors.forEach { sponsorHash.put(it.id, it) }
+    fun storeSponsors(sponsors: List<Sponsor>) = sponsors.forEach { sponsorHash.put(it.websiteLink, it) }
 
     fun storeTeam(teamList: List<Person>) = teamList.forEach { teamHash.put(it.id, it) }
 

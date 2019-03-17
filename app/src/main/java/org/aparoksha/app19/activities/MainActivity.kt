@@ -14,16 +14,15 @@ import org.aparoksha.app19.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var currentFragment: Fragment
+    private var currentFragment: Fragment = Fragment()
     lateinit var toolBar : AppBarLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         toolBar = app_bar
-        currentFragment = HomeFragment()
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         loadFragment(HomeFragment())
         initiateBottomNavigation()
-
     }
 
     private fun initiateBottomNavigation() {
@@ -57,6 +56,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun setTitle(title: CharSequence?) {
         super.setTitle(title)
-        toolbar.title = title
+        toolbar_title.text = title.toString()
     }
 }
