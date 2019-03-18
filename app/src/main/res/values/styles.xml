@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/work_sans</item>
 
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -16,6 +17,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/work_sans</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColorSecondary">@android:color/white</item>

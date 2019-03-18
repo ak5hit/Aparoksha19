@@ -11,8 +11,6 @@ import org.aparoksha.app19.models.Sponsor
 import org.aparoksha.app19.utils.AppDB
 import org.jetbrains.anko.toast
 
-//import org.aparoksha.app19.utils
-
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var appDb: AppDB

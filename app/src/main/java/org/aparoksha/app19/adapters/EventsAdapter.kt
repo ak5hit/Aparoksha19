@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.event_container.view.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.activities.EventsDetailActivity
 import org.aparoksha.app19.models.Event
-import org.jetbrains.anko.startActivity
 import java.text.SimpleDateFormat
 import java.util.*
 

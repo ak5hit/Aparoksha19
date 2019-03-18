@@ -27,7 +27,6 @@
             android:layout_above="@id/timePlaceLL"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/delius"
             android:text="Title"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
@@ -48,19 +47,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/product_sans_regular"
                 android:maxLines="1"
                 android:text="10:00 PM"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/locationTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/product_sans_regular"
                 android:text="Main Stage"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textSize="12sp" />
 
         </LinearLayout>

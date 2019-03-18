@@ -10,11 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.upcoming_event_layout.view.*
 import org.aparoksha.app19.R
+import org.aparoksha.app19.activities.EventsDetailActivity
 import org.aparoksha.app19.models.Event
-
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,16 +26,13 @@ class UpcomingAdapter(val context: Context) : RecyclerView.Adapter<UpcomingAdapt
     override fun getItemCount() = events.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            ViewHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.upcoming_event_layout, parent, false))
+        ViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.upcoming_event_layout, parent, false)
+        )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        if (position == 0 || position == 1) {
-//            holder.rootLayout.visibility = View.INVISIBLE
-//        } else {
-//            holder.rootLayout.visibility = View.VISIBLE
-            holder.bindItem(context, events[position])
-//        }
+        holder.bindItem(context, events[position])
     }
 
     fun addEvents(events: List<Event>) {
@@ -43,8 +41,6 @@ class UpcomingAdapter(val context: Context) : RecyclerView.Adapter<UpcomingAdapt
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-//        val rootLayout = itemView.findViewById<LinearLayout>(R.id.rootLayout)
 
         fun bindItem(context: Context, event: Event) {
             itemView.eventNameTV.text = event.name
@@ -57,21 +53,21 @@ class UpcomingAdapter(val context: Context) : RecyclerView.Adapter<UpcomingAdapt
 
             itemView.eventTimeTV.text = sdf.format(calendar.time)
 
-            if(event.timestamp < 100L){
+            if (event.timestamp < 100L) {
                 itemView.eventTimeTV.text = ""
-            }else{
+            } else {
                 itemView.eventTimeTV.visibility = View.VISIBLE
             }
             Glide.with(context)
-                    .load(event.imageUrl)
-                    .into(itemView.eventImageView)
+                .load(event.imageUrl)
+                .into(itemView.eventImageView)
 
-//            itemView.rootLayout.setOnClickListener {
-//                val intent = Intent(context, EventDetailActivity::class.java)
-//                val optionsCompat = ActivityOptions.makeSceneTransitionAnimation(context as Activity)
-//                intent.putExtra("event", event)
-//                ContextCompat.startActivity(context, intent, optionsCompat.toBundle())
-//            }
+            itemView.rootLayout.setOnClickListener {
+                val intent = Intent(context, EventsDetailActivity::class.java)
+                val optionsCompat = ActivityOptions.makeSceneTransitionAnimation(context as Activity)
+                intent.putExtra("id", event.id)
+                ContextCompat.startActivity(context, intent, optionsCompat.toBundle())
+            }
         }
     }
 }

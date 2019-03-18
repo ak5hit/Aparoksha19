@@ -1,6 +1,10 @@
 package org.aparoksha.app19.adapters
 
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +13,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.bookmark_event_layout.view.*
 import org.aparoksha.app19.R
+import org.aparoksha.app19.activities.EventsDetailActivity
 import org.aparoksha.app19.models.Event
 import org.aparoksha.app19.utils.AppDB
 import java.text.SimpleDateFormat
@@ -73,12 +78,12 @@ class BookmarksAdapter(val context: Context, val itemClick : () -> Unit) :
             }else{
                 timeView.visibility = View.VISIBLE
             }
-//            itemView.setOnClickListener {
-//                val intent = Intent(context, EventDetailActivity::class.java)
-//                val optionsCompat = ActivityOptions.makeSceneTransitionAnimation(context as Activity)
-//                intent.putExtra("event", event)
-//                ContextCompat.startActivity(context, intent, optionsCompat.toBundle())
-//            }
+            itemView.setOnClickListener {
+                val intent = Intent(context, EventsDetailActivity::class.java)
+                val optionsCompat = ActivityOptions.makeSceneTransitionAnimation(context as Activity)
+                intent.putExtra("id", event.id)
+                ContextCompat.startActivity(context, intent, optionsCompat.toBundle())
+            }
 
             Glide.with(context)
                     .load(event.imageUrl)
