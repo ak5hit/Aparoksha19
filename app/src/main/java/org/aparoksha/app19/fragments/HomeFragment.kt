@@ -85,7 +85,13 @@ class HomeFragment : Fragment() {
         }
 
         val toolBar = (activity as MainActivity).toolBar
-        toolBar.elevation = 0f
+        main_scroll_view.setOnScrollChangeListener { _, _, _, _, _ ->
+            val value = main_scroll_view.canScrollVertically(-1)
+            if (!value) {
+                toolBar.elevation = 0f
+            } else {
+                toolBar.elevation = 16f
+            }
+        }
     }
-
 }
