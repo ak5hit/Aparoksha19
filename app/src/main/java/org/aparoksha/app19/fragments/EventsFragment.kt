@@ -22,8 +22,8 @@ class EventsFragment : Fragment() {
     private val TAG = EventsFragment::class.java.simpleName
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_events, container, false)
@@ -35,17 +35,15 @@ class EventsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         activity?.title = getString(R.string.events_fragment_title)
 
-
-
         categoryRecyclerView.layoutManager = LinearLayoutManager(context,
-            LinearLayoutManager.VERTICAL,false)
+                LinearLayoutManager.VERTICAL, false)
 
         val toolBar = (activity as MainActivity).toolBar
         categoryRecyclerView.setOnScrollChangeListener { _, _, _, _, _ ->
             val value = categoryRecyclerView.canScrollVertically(-1)
-            if(!value) {
+            if (!value) {
                 toolBar.elevation = 0f
-            } else{
+            } else {
                 toolBar.elevation = 16f
             }
         }
@@ -58,7 +56,7 @@ class EventsFragment : Fragment() {
         allEvents.allEvents.observe(this, Observer {
             it?.let {
                 val list = ArrayList<Event>()
-                for(element in it)
+                for (element in it)
                     list.add(element)
 
                 adapter.updateEvents(list)
