@@ -17,6 +17,7 @@ class EventsViewModel(application : Application) : AndroidViewModel(application)
     private val TAG = EventsViewModel::class.java.simpleName
 
     val allEvents = MutableLiveData<ArrayList<Event>>()
+    var isDataLoaded = true
 
     fun getData(isFetchNeeded : Boolean) {
         val dataBase = AppDB.getInstance(getApplication())
@@ -25,7 +26,7 @@ class EventsViewModel(application : Application) : AndroidViewModel(application)
         var isFetchingRequired = isFetchNeeded
         if(data.size == 0)
             isFetchingRequired = true
-        if(isFetchingRequired) {
+        if(isDataLoaded) {
             GlobalScope.launch {
                 val ref = FirebaseDatabase.getInstance().reference.child("events")
                 ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -40,9 +41,11 @@ class EventsViewModel(application : Application) : AndroidViewModel(application)
                             Log.d(TAG, snap.toString())
                             val currVal = snap.getValue(Event::class.java)
                             list.add(currVal!!)
-                            Log.d(TAG, "${currVal.id} => ${currVal.name}" )
                         }
                         dataBase.storeEvents(list)
+                        isDataLoaded = false
+                        if(isFetchingRequired)
+                            getData(false)
                     }
                 })
             }

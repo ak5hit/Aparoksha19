@@ -60,12 +60,12 @@ class SplashActivity : AppCompatActivity() {
                                 allEvents.getData(true)
                                 allEvents.allEvents.observe(this, Observer {
                                     it?.let {
-                                        val list = ArrayList<Event>()
-                                        for (element in it)
-                                            list.add(element)
+                                        if(it.isNotEmpty()) {
+                                            startActivity(Intent(this, MainActivity::class.java))
+                                            finish()
+                                        }
+
                                     }
-                                    startActivity(Intent(this, MainActivity::class.java))
-                                    finish()
                                 })
                             }
                             .addOnFailureListener {

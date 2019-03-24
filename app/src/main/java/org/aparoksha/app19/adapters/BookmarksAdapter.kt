@@ -19,9 +19,7 @@ import org.aparoksha.app19.utils.AppDB
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Created by betterclever on 17/09/17.
- */
+
 
 class BookmarksAdapter(val context: Context, val itemClick : () -> Unit) :
         RecyclerView.Adapter<BookmarksAdapter.ViewHolder>() {
@@ -62,7 +60,7 @@ class BookmarksAdapter(val context: Context, val itemClick : () -> Unit) :
             titleView.text = event.name
 
             val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/India"))
-            calendar.timeInMillis = event.timestamp.times(1000L)
+            calendar.timeInMillis = event.timestamp
 
             val sdf = SimpleDateFormat("hh:mm a")
             sdf.timeZone = TimeZone.getTimeZone("Asia/India")

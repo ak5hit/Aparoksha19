@@ -40,7 +40,7 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
                 if (event.timestamp < 100L) {
                     eventTimeTV.text = "Online Event"
                 } else {
-                    calendar.timeInMillis = event.timestamp.times(1000L)
+                    calendar.timeInMillis = event.timestamp
 
                     val sdf = SimpleDateFormat("MMM d, hh:mm a")
                     sdf.timeZone = TimeZone.getTimeZone("Asia/India")

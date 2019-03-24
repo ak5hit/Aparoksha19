@@ -46,7 +46,7 @@ class UpcomingAdapter(val context: Context) : RecyclerView.Adapter<UpcomingAdapt
             itemView.eventNameTV.text = event.name
 
             val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/India"))
-            calendar.timeInMillis = event.timestamp.times(1000L)
+            calendar.timeInMillis = event.timestamp
 
             val sdf = SimpleDateFormat("MMM dd, hh:mm a")
             sdf.timeZone = TimeZone.getTimeZone("Asia/India")

@@ -108,7 +108,7 @@ class EventsDetailActivity : AppCompatActivity() {
         }
 
         val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/India"))
-        calendar.timeInMillis = event.timestamp.times(1000L)
+        calendar.timeInMillis = event.timestamp
 
         val sdf = SimpleDateFormat("hh:mm a")
         sdf.timeZone = TimeZone.getTimeZone("Asia/India")
@@ -148,6 +148,7 @@ class EventsDetailActivity : AppCompatActivity() {
                 view.organizerNumber.text = callNumber
 
                 view.callButton.setOnClickListener {
+                    callNumber = it.tag as String
                     if (ContextCompat.checkSelfPermission(this,
                             Manifest.permission.CALL_PHONE)
                         != PackageManager.PERMISSION_GRANTED) {
@@ -157,6 +158,8 @@ class EventsDetailActivity : AppCompatActivity() {
                     } else
                         startActivity(Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:" + callNumber)))
                 }
+
+                view.callButton.tag = callNumber
                 organizerLinearLayout.addView(view)
             }
         }else {
