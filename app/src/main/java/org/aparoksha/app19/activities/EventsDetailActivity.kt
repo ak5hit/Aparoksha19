@@ -98,6 +98,10 @@ class EventsDetailActivity : AppCompatActivity() {
     private fun setupInitialView() {
         toolbar_layout.title = event.name
         eventLocationTextView.text = event.location
+        if(event.location.isBlank()){
+            eventLocationTextView.visibility = View.GONE
+            mapImage.visibility = View.GONE
+        }
 
         if(event.timestamp < 100L){
             eventLocationTextView.text = "Online"

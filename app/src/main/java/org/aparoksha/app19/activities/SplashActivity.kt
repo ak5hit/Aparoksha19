@@ -21,6 +21,7 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var teamArrayList: ArrayList<Person>
     private lateinit var sponsorsArrayList: ArrayList<Sponsor>
+    private var shouldOpen = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,8 +62,11 @@ class SplashActivity : AppCompatActivity() {
                                 allEvents.allEvents.observe(this, Observer {
                                     it?.let {
                                         if(it.isNotEmpty()) {
-                                            startActivity(Intent(this, MainActivity::class.java))
-                                            finish()
+                                            if(shouldOpen) {
+                                                shouldOpen = false
+                                                startActivity(Intent(this, MainActivity::class.java))
+                                                finish()
+                                            }
                                         }
 
                                     }
