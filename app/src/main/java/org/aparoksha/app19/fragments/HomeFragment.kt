@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
         bookmarksRecyclerView.adapter = bookmarksAdapter
 
         var events = appDB.getAllEvents()
-            .filter { ((it.timestamp - (5 * 60 * 60 - 30 * 60)*1000) > System.currentTimeMillis() / 1000L)
+            .filter { ((it.timestamp - (5 * 60 * 60 - 30 * 60)*1000) > System.currentTimeMillis())
                 .and(it.timestamp != 2L) }
             .sortedBy { it.timestamp }
         if(events.size > 10){

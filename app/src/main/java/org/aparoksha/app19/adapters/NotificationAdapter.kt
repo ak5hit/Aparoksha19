@@ -10,12 +10,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import kotlinx.android.synthetic.main.notification_container.view.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.models.Notification
-import java.text.SimpleDateFormat
-import java.util.*
 
-/**
- * Created by sashank on 4/3/18.
- */
 
 class NotificationAdapter(options: FirebaseRecyclerOptions<Notification>,
                           private val noNotifsTV : TextView)
