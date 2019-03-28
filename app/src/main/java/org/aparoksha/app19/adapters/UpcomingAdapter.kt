@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import kotlinx.android.synthetic.main.upcoming_event_layout.view.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.activities.EventsDetailActivity
@@ -26,10 +27,10 @@ class UpcomingAdapter(val context: Context) : RecyclerView.Adapter<UpcomingAdapt
     override fun getItemCount() = events.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.upcoming_event_layout, parent, false)
-        )
+            ViewHolder(
+                    LayoutInflater.from(parent.context)
+                            .inflate(R.layout.upcoming_event_layout, parent, false)
+            )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(context, events[position])
@@ -59,8 +60,9 @@ class UpcomingAdapter(val context: Context) : RecyclerView.Adapter<UpcomingAdapt
                 itemView.eventTimeTV.visibility = View.VISIBLE
             }
             Glide.with(context)
-                .load(event.imageUrl)
-                .into(itemView.eventImageView)
+                    .load(event.imageUrl)
+                    .transition(DrawableTransitionOptions().crossFade())
+                    .into(itemView.eventImageView)
 
             itemView.rootLayout.setOnClickListener {
                 val intent = Intent(context, EventsDetailActivity::class.java)

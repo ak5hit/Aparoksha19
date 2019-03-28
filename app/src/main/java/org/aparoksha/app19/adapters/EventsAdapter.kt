@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import kotlinx.android.synthetic.main.event_container.view.*
 import org.aparoksha.app19.R
 import org.aparoksha.app19.activities.EventsDetailActivity
@@ -22,7 +23,7 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
     private var eventsList: List<Event> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-            ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.event_container,parent,false))
+            ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.event_container, parent, false))
 
     override fun getItemCount(): Int = eventsList.size
 
@@ -30,7 +31,7 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
         holder.bind(eventsList[position])
     }
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(event: Event) {
 
             with(itemView) {
@@ -47,7 +48,10 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
                     eventTimeTV.text = sdf.format(calendar.time)
                 }
 
-                Glide.with(this).load(event.imageUrl).into(eventImage)
+                Glide.with(this)
+                        .load(event.imageUrl)
+                        .transition(DrawableTransitionOptions().crossFade())
+                        .into(eventImage)
 
                 setOnClickListener {
                     val intent = Intent(context, EventsDetailActivity::class.java)
